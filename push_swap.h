@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjover-n <cjover-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjover-n <cjover-n@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 21:56:35 by cjover-n          #+#    #+#             */
-/*   Updated: 2021/05/16 22:21:34 by cjover-n         ###   ########.fr       */
+/*   Updated: 2021/05/17 22:10:30 by cjover-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@ typedef struct s_push
 	int			x;
 	int			y;
 }				t_push;
-
 
 #endif
