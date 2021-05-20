@@ -6,7 +6,7 @@
 /*   By: cjover-n <cjover-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 21:54:18 by cjover-n          #+#    #+#             */
-/*   Updated: 2021/05/18 22:00:03 by cjover-n         ###   ########.fr       */
+/*   Updated: 2021/05/20 21:24:53 by cjover-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	main(int argc, char **argv)
 {
-	t_push		p;
-	//t_list		*a;
-	//t_list		*b;
+	t_list		*a;
+	t_list		*b;
+	
 	int	num;
 
 	if (argc < 2)
