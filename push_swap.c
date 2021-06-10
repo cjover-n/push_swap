@@ -6,7 +6,7 @@
 /*   By: cjover-n <cjover-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 21:54:18 by cjover-n          #+#    #+#             */
-/*   Updated: 2021/05/25 22:28:37 by cjover-n         ###   ########.fr       */
+/*   Updated: 2021/06/10 22:02:16 by cjover-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,33 @@ int		ft_isnum(char *str)
 	return (1);
 }
 
+/*
+Getionar primero los parámetros pasados por zsh, no por bash
+Es decir, los parámetros uno por uno
+*/
+
 int	main(int argc, char **argv)
 {
 	t_list		*a;
 	t_list		*b;
+	t_list		*current;
 	int i;
 
-	if (argc < 2)
+	if (argc == 1)
 		return (1);
-	char **arr = ft_split(argv[1], ' ');
-	i = 0;
+	i = 1;
 	b = NULL;
-	while (arr[i] != 0)
+	a = NULL;
+	current = a;
+	while (argv[i])
 	{
-		a = ft_lstnew(arr[i]);
-		if (!ft_isnum(a->content))
-			return(0);
-		printf("[%s]\n", a->content);
+		if (!ft_isnum(argv[i]))
+			return (0);
+		//TODO --> Hacer free primero con lstclear
+		current = ft_lstnew(argv[i]);
+		printf("[%s]\n", current->content);
+		current = current->next;
 		i++;
 	}
+	return (0);
 }
