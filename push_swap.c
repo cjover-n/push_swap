@@ -6,7 +6,7 @@
 /*   By: cjover-n <cjover-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 21:54:18 by cjover-n          #+#    #+#             */
-/*   Updated: 2021/06/10 22:02:16 by cjover-n         ###   ########.fr       */
+/*   Updated: 2021/06/13 20:26:02 by cjover-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,21 @@ int		ft_isnum(char *str)
 	return (1);
 }
 
+int		order(t_push *push)
+{
+	int j = 0;
+
+	while (push->current->next)
+	{
+		if (push->current->content > push->current->next)
+		{
+			j++;
+			push->current->content = push->current->next;
+		}
+	}
+	return (j);
+}
+
 /*
 Getionar primero los parámetros pasados por zsh, no por bash
 Es decir, los parámetros uno por uno
@@ -35,26 +50,26 @@ Es decir, los parámetros uno por uno
 
 int	main(int argc, char **argv)
 {
-	t_list		*a;
-	t_list		*b;
-	t_list		*current;
+	t_push push;
 	int i;
 
 	if (argc == 1)
 		return (1);
 	i = 1;
-	b = NULL;
-	a = NULL;
-	current = a;
+	push.b = NULL;
+	push.a = NULL;
+	push.current = push.a;
 	while (argv[i])
 	{
 		if (!ft_isnum(argv[i]))
 			return (0);
-		//TODO --> Hacer free primero con lstclear
-		current = ft_lstnew(argv[i]);
-		printf("[%s]\n", current->content);
-		current = current->next;
+		ft_lstclear(&push.current, free);
+		push.current = ft_lstnew(argv[i]);
+		printf("[%s]\n", push.current->content);
+		push.current = push.current->next;
 		i++;
 	}
+	if (order(&push) == 0)
+		printf("order es cero\n");
 	return (0);
 }

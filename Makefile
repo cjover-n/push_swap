@@ -6,7 +6,7 @@
 #    By: cjover-n <cjover-n@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/16 22:56:39 by cjover-n          #+#    #+#              #
-#    Updated: 2021/05/16 22:59:48 by cjover-n         ###   ########.fr        #
+#    Updated: 2021/06/13 20:25:45 by cjover-n         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,15 +33,16 @@ DIRLIBFTSRC = Libft/
 ADDLIBFT = $(addprefix $(DIRLIBFTSRC),$(SRCLIB))
 SRCOBJ = $(SRC:.c=.o) $(ADDLIBFT:.c=.o)
 
-FLAGS = -Wextra -Wall -Werror -g
+FLAGS = -Wextra -Wall -Werror -I -g
 
 all: $(NAME)
 
-$(NAME): $(SRC) $(ADDLIBFT) Libft/libft.h
+$(NAME): $(SRC) $(SRCOBJ) Libft/libft.h
 	@gcc $(FLAGS) ./$(SRC) $(ADDLIBFT) -o push_swap
 
 clean:
 	@rm -f *.o
+	@rm -f $(DIRLIBFTSRC)*.o
 	@rm -f *.out
 	@rm -f -r *.dSYM
 
