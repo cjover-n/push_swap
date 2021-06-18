@@ -6,7 +6,7 @@
 /*   By: cjover-n <cjover-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 21:54:18 by cjover-n          #+#    #+#             */
-/*   Updated: 2021/06/13 20:26:02 by cjover-n         ###   ########.fr       */
+/*   Updated: 2021/06/18 21:47:49 by cjover-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,19 @@ int		ft_isnum(char *str)
 
 int		order(t_push *push)
 {
+	t_list *current;
 	int j = 0;
 
-	while (push->current->next)
+	current = push->a;
+	while (current->next)
 	{
-		if (push->current->content > push->current->next)
+		if (current->content > current->next->content)
 		{
 			j++;
-			push->current->content = push->current->next;
+			current = current->next;
 		}
+		else
+			return 0;
 	}
 	return (j);
 }
@@ -51,6 +55,8 @@ Es decir, los parámetros uno por uno
 int	main(int argc, char **argv)
 {
 	t_push push;
+	t_list *current;
+    
 	int i;
 
 	if (argc == 1)
@@ -58,15 +64,15 @@ int	main(int argc, char **argv)
 	i = 1;
 	push.b = NULL;
 	push.a = NULL;
-	push.current = push.a;
+	current = push.a;
 	while (argv[i])
 	{
 		if (!ft_isnum(argv[i]))
 			return (0);
-		ft_lstclear(&push.current, free);
-		push.current = ft_lstnew(argv[i]);
-		printf("[%s]\n", push.current->content);
-		push.current = push.current->next;
+		ft_lstclear(&current, free);
+		current = ft_lstnew(argv[i]);
+		printf("[%s]\n", current->content);
+		current = current->next;
 		i++;
 	}
 	if (order(&push) == 0)
