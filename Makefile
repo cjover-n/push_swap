@@ -6,7 +6,7 @@
 #    By: cjover-n <cjover-n@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/16 22:56:39 by cjover-n          #+#    #+#              #
-#    Updated: 2021/06/13 20:25:45 by cjover-n         ###   ########.fr        #
+#    Updated: 2021/06/19 20:07:01 by cjover-n         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ DIRLIBFTSRC = Libft/
 ADDLIBFT = $(addprefix $(DIRLIBFTSRC),$(SRCLIB))
 SRCOBJ = $(SRC:.c=.o) $(ADDLIBFT:.c=.o)
 
-FLAGS = -Wextra -Wall -Werror -I -g
+FLAGS = -Wextra -Wall -Werror -g
 
 all: $(NAME)
 

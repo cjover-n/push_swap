@@ -6,7 +6,7 @@
 /*   By: cjover-n <cjover-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 21:54:18 by cjover-n          #+#    #+#             */
-/*   Updated: 2021/06/18 21:47:49 by cjover-n         ###   ########.fr       */
+/*   Updated: 2021/06/19 21:30:40 by cjover-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int		order(t_push *push)
 	t_list *current;
 	int j = 0;
 
-	current = push->a;
-	while (current->next)
+	current = push->a->head;
+	while (current)
 	{
 		if (current->content > current->next->content)
 		{
@@ -54,8 +54,8 @@ Es decir, los parámetros uno por uno
 
 int	main(int argc, char **argv)
 {
-	t_push push;
-	t_list *current;
+	t_push 		push;
+	t_list 	*current;
     
 	int i;
 
@@ -69,12 +69,13 @@ int	main(int argc, char **argv)
 	{
 		if (!ft_isnum(argv[i]))
 			return (0);
-		ft_lstclear(&current, free);
 		current = ft_lstnew(argv[i]);
-		printf("[%s]\n", current->content);
-		current = current->next;
+		printf("[%d]\n", current->content);
+		if (current->next)
+			current = current->next;
 		i++;
 	}
+	push.a = current;
 	if (order(&push) == 0)
 		printf("order es cero\n");
 	return (0);
