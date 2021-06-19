@@ -6,7 +6,7 @@
 /*   By: cjover-n <cjover-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 21:54:18 by cjover-n          #+#    #+#             */
-/*   Updated: 2021/06/19 21:30:40 by cjover-n         ###   ########.fr       */
+/*   Updated: 2021/06/19 22:48:57 by cjover-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,26 @@ int		ft_isnum(char *str)
 	return (1);
 }
 
-int		order(t_push *push)
+void		compare_two(t_list *list1, t_list *list2)
 {
-	t_list *current;
-	int j = 0;
-
-	current = push->a->head;
-	while (current)
+	if (list1 && list2)
 	{
-		if (current->content > current->next->content)
+		if (ft_atoi(list1->content) > ft_atoi(list2->content))
 		{
-			j++;
-			current = current->next;
+			printf("El primer elemento es mayor que el segundo");
 		}
 		else
-			return 0;
+		{
+			printf("El primer elemento es menor que el segundo");
+		}
 	}
-	return (j);
+}
+
+void cosa(t_list *list)
+{
+	if (list->next)
+		cosa(list->next);
+	free(list);
 }
 
 /*
@@ -69,14 +72,22 @@ int	main(int argc, char **argv)
 	{
 		if (!ft_isnum(argv[i]))
 			return (0);
-		current = ft_lstnew(argv[i]);
-		printf("[%d]\n", current->content);
-		if (current->next)
-			current = current->next;
+		if (!push.a)
+		{
+			current = ft_lstnew(argv[i]);
+			push.a = current;
+			printf("[%s]\n", current->content);
+		}
+		else
+		{
+			current = ft_lstnew(argv[i]);
+			ft_lstadd_back(&push.a, current);
+			printf("[%s]\n", current->content);
+		}
 		i++;
 	}
-	push.a = current;
-	if (order(&push) == 0)
-		printf("order es cero\n");
+	compare_two(push.a, push.a->next);
+	cosa(push.a);
+	system("leaks push_swap");
 	return (0);
 }

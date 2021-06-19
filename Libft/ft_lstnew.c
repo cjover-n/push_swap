@@ -6,28 +6,25 @@
 /*   By: cjover-n <cjover-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 20:52:31 by cjover-n          #+#    #+#             */
-/*   Updated: 2021/06/19 21:23:21 by cjover-n         ###   ########.fr       */
+/*   Updated: 2021/06/19 22:53:21 by cjover-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+** He sido secuestrado de libft de Miki
+*/
+
 t_list	*ft_lstnew(void *content)
 {
-	t_list	*new;
+	t_list	*tmp;
 
-	new = (t_list *)malloc(sizeof(t_list));
-	if (!new)
-		return (NULL);
-	if (!content)
-		new->content = content;
-	else
+	tmp = malloc(sizeof(t_list));
+	if (tmp)
 	{
-		new->content = malloc(sizeof(content));
-		if (!new->content)
-			return (NULL);
-		new->content = content;
+		tmp->content = (void *)content;
+		tmp->next = NULL;
 	}
-	new->next = NULL;
-	return (new);
+	return (tmp);
 }

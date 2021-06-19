@@ -6,7 +6,7 @@
 /*   By: cjover-n <cjover-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 21:56:35 by cjover-n          #+#    #+#             */
-/*   Updated: 2021/06/19 21:21:22 by cjover-n         ###   ########.fr       */
+/*   Updated: 2021/06/19 21:47:49 by cjover-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ typedef struct s_push
 {
 	int			x;
 	int			y;
-	t_stack		*a;
-	t_stack		*b;
+	t_list		*a;
+	t_list		*b;
 }				t_push;
 
 
