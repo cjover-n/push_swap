@@ -6,13 +6,13 @@
 #    By: cjover-n <cjover-n@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/16 22:56:39 by cjover-n          #+#    #+#              #
-#    Updated: 2021/06/19 20:07:01 by cjover-n         ###   ########.fr        #
+#    Updated: 2021/06/25 20:55:02 by cjover-n         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-SRC =	push_swap.c
+SRC =	push_swap.c stack_management.c
 
 SRCLIB =	ft_isalpha.c	ft_isprint.c	ft_strlcpy.c	ft_strrchr.c	\
 			ft_atoi.c		ft_isascii.c	ft_strchr.c		ft_strlen.c		\
