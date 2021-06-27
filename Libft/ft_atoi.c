@@ -6,42 +6,64 @@
 /*   By: cjover-n <cjover-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 19:29:30 by cjover-n          #+#    #+#             */
-/*   Updated: 2021/05/16 17:09:04 by cjover-n         ###   ########.fr       */
+/*   Updated: 2021/06/27 17:31:06 by cjover-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_stopspaces(const char *str, int i)
+#include "libft.h"
+
+static int	ft_clean_garbage(int i, const char *str)
 {
-	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v' \
-			|| str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
+	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'\
+		 || str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
+	{
 		i++;
+	}
 	return (i);
+}
+
+static int	ft_negative(int *n, const char c, int i)
+{
+	if (c == '-' || c == '+')
+	{
+		if (c == '-')
+		{
+			*n *= -1;
+		}
+		i++;
+	}
+	return (i);
+}
+
+static long	ft_store_nmb(int *x, const char *str, long resp, int n)
+{
+	int		i;
+
+	i = *x;
+	while (str[i] >= 48 && str[i] <= 57)
+	{
+		resp = (resp * 10) + (str[i] - '0');
+		if (resp > 2147483647 && n == 1)
+			return (-1);
+		else if (resp > 2147483648 && n == -1)
+			return (0);
+		i++;
+	}
+	*x = i;
+	return (resp);
 }
 
 int	ft_atoi(const char *str)
 {
-	int			i;
-	int			flag;
-	long int	num;
+	long	resp;
+	int		i;
+	int		n;
 
 	i = 0;
-	flag = 0;
-	num = 0;
-	i = ft_stopspaces(str, i);
-	(str[i] == '-') && (flag = 1);
-	(str[i] == '+' || str[i] == '-') && (i += 1);
-	while (str[i] != '\0')
-	{
-		if (str[i] < '0' || str[i] > '9')
-			return (num);
-		num *= 10;
-		(flag == 1) && (num -= str[i] - '0');
-		(flag == 0) && (num += str[i] - '0');
-		i++;
-		if (num > 2147483647)
-			return (-1);
-		else if (num < -2147483648)
-			return (0);
-	}
-	return (num);
+	resp = 0;
+	n = 1;
+	i = ft_clean_garbage(i, str);
+	i = ft_negative(&n, str[i], i);
+	resp = ft_store_nmb(&i, str, resp, n);
+	return ((int)(resp * n));
 }

@@ -6,7 +6,7 @@
 /*   By: cjover-n <cjover-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 21:54:18 by cjover-n          #+#    #+#             */
-/*   Updated: 2021/06/25 22:15:56 by cjover-n         ###   ########.fr       */
+/*   Updated: 2021/06/27 18:31:24 by cjover-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	generate_stacks(char **argv, int argc, t_stack *stack)
 			stack->top = current;
 		if (i == argc - 1)
 			stack->end = current;
-		current = current->next;
+		//current = current->next;
 		i++;
 	}
 	return (1);

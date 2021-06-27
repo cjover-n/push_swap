@@ -6,7 +6,7 @@
 #    By: cjover-n <cjover-n@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/16 22:56:39 by cjover-n          #+#    #+#              #
-#    Updated: 2021/06/25 20:55:02 by cjover-n         ###   ########.fr        #
+#    Updated: 2021/06/27 17:29:22 by cjover-n         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = push_swap
 
 SRC =	push_swap.c stack_management.c
 
-SRCLIB =	ft_isalpha.c	ft_isprint.c	ft_strlcpy.c	ft_strrchr.c	\
+#SRCLIB =	ft_isalpha.c	ft_isprint.c	ft_strlcpy.c	ft_strrchr.c	\
 			ft_atoi.c		ft_isascii.c	ft_strchr.c		ft_strlen.c		\
 			ft_tolower.c	ft_isalnum.c	ft_isdigit.c	ft_strlcat.c	\
 			ft_strncmp.c	ft_toupper.c	ft_memset.c		ft_bzero.c		\
@@ -30,25 +30,35 @@ SRCLIB =	ft_isalpha.c	ft_isprint.c	ft_strlcpy.c	ft_strrchr.c	\
 
 DIRLIBFTSRC = Libft/
 
-ADDLIBFT = $(addprefix $(DIRLIBFTSRC),$(SRCLIB))
-SRCOBJ = $(SRC:.c=.o) $(ADDLIBFT:.c=.o)
+INCLUDE_LIBFT = -L ./Libft/ -lft
+
+LIBFT = Libft/libft.a
+
+#ADDLIBFT = $(addprefix $(DIRLIBFTSRC),$(SRCLIB))
+
+#SRCOBJ = $(SRC:.c=.o) $(ADDLIBFT:.c=.o)
+
+SRCOBJ = $(SRC:.c=.o)
 
 FLAGS = -Wextra -Wall -Werror -g
 
 all: $(NAME)
 
-$(NAME): $(SRC) $(SRCOBJ) Libft/libft.h
-	@gcc $(FLAGS) ./$(SRC) $(ADDLIBFT) -o push_swap
+$(NAME): $(LIBFT) $(SRC) $(SRCOBJ)
+	@gcc $(FLAGS) $(SRC) $(LIBFT) -o push_swap
 
 clean:
-	@rm -f *.o
-	@rm -f $(DIRLIBFTSRC)*.o
-	@rm -f *.out
-	@rm -f -r *.dSYM
+	@$(MAKE) -C Libft/ clean
+	@rm -f $(SRCOBJ)
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -rf $(NAME).dSYM
+	@$(MAKE) -C Libft fclean
 
 re: fclean all
+
+libft:
+	@cd Libft
+	@make re
 
 .PHONY: all clean fclean re
